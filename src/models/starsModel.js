@@ -12,6 +12,11 @@ const userSchema = mongoose.Schema({
         unique: true,
     },
 
+    nomeUsuario: {
+        type: String,
+        required: true
+    },
+
     instagram: { 
         type: String,
         default: "Não Informado."
