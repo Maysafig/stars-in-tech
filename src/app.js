@@ -18,7 +18,7 @@ mongoose.connect()
 
 app.use("/minha-rota-de-documentacao", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use("/", index)
-app.use(userRoutes)
-app.use(starsRoutes)
+app.use("/", userRoutes)
+app.use("/",starsRoutes)
 
 module.exports = app 
