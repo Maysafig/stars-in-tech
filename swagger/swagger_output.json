@@ -11,6 +11,17 @@
     "http"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "description": "",
