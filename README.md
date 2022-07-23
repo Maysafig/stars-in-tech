@@ -1,9 +1,8 @@
 <img src="assets\stars.png">
 
 <p align="center">
-  <a> 
-    <href="https://stars-in-tech.herokuapp.com/"><img src="https://img.shields.io/badge/deploy-heroku.com-purple" alt="Deploy on heroku">
-    <href="https://stars-in-tech.herokuapp.com/minha-rota-de-documentacao"><img src="https://img.shields.io/badge/documentation-swagger-purple" alt="Documentation on Swagger"></a>    
+    <a href="https://stars-in-tech.herokuapp.com/"><img src="https://img.shields.io/badge/deploy-heroku.com-purple" alt="Deploy on heroku" /a>
+    <a href="https://stars-in-tech.herokuapp.com/minha-rota-de-documentacao"><img src="https://img.shields.io/badge/documentation-swagger-purple" alt="Documentation on Swagger" /a>
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/maysafig/stars-in-tech?color=purple">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/maysafig/stars-in-tech?color=purple">
 </p>
