@@ -4,9 +4,10 @@
   "description": "<img src=\"assets\\stars.png\">",
   "main": "server.js",
   "scripts": {
+    "test:watch": "jest --watchAll",
     "start": "nodemon server.js",
-    "swagger-autogen": "node swagger.js",
-    "test:watch": "jest --watchAll"
+    "nodemon": "^2.0.19",
+    "swagger-autogen": "node swagger.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,6 @@
     "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
-    "jest": "28.1.0",
-    "nodemon": "^2.0.19"
+    "jest": "28.1.0"
   }
 }
