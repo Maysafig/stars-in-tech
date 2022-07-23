@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "swagger-autogen": "node swagger.js"
+    "swagger-autogen": "node swagger.js",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
+    "jest": "28.1.0",
     "nodemon": "^2.0.19"
   }
 }
