@@ -17,7 +17,8 @@ Em nosso banco de dados será possível cadastrar as plataformas utilizadas para
 <img src="assets\maysa.totvs.jpg" width=115 >
 <href="https://github.com/Maysafig/Maysafig"><br><img src="https://img.shields.io/badge/Maysa Figueiredo-purple" alt="Maysa Profile">
 
-![Github Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Maysafig)
-![Linkedin Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/maysa-figueiredo/)
-![Gmail Badge](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white&link=mailto:maysafig@gmail.com)
+## 📧 Contatos 
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/maysa-figueiredo)
+[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:maysafig@gmail.com)
 
