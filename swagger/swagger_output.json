@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
+    "title": "Stars In Tech",
     "description": ""
   },
   "host": "localhost:3000",
@@ -13,7 +13,7 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "Index",
         "parameters": [],
         "responses": {
           "200": {
