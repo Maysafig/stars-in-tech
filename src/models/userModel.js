@@ -1,9 +1,9 @@
-const moongoose = require("mongoose")
+const mongoose = require("mongoose")
 
-const userSchema = moongoose.Schema({
+const userSchema = mongoose.Schema({
     _id: {
-        type: moongoose.Schema.Types.ObjectId,
-        default: moongoose.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        default: mongoose.Types.ObjectId
     },
 
     nome: {

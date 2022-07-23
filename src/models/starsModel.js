@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 
-const userSchema = mongoose.Schema({
+const starsSchema = mongoose.Schema({
     _id: {
-        type: moongoose.Schema.Types.ObjectId,
-        default: moongoose.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        default: mongoose.Types.ObjectId
     },
 
     nome: {

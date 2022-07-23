@@ -4,6 +4,6 @@ const express = require("express")
 const router = express.Router()
 
 router.post("/stars", controller.createStar)
-router.get("/stars/", controller.findAllStars)
+router.get("/stars", controller.findAllStars)
 
 module.exports = router 
