@@ -44,7 +44,7 @@ const starsSchema = mongoose.Schema({
 
 }, { timestamps: true })
 
-const Model = mongoose.model("stars", starsSchema)
+const Star = mongoose.model("stars", starsSchema)
 
-module.exports = Model
+module.exports = Star
 
