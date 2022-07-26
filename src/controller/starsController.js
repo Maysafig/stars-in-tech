@@ -61,7 +61,7 @@ const deleteStar = async (req, res) => {
 
         await findStar.remove()
 
-        res.status(200).json({ message: `A  Star ${findStar.nome} foi deletada com sucesso.` })
+        res.status(200).json({ message: `A Star ${findStar.nome} foi deletada com sucesso.` })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
