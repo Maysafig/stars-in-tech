@@ -1,5 +1,3 @@
-const { findByIdAndUpdate } = require("../models/userModel")
-const User = require("../models/userModel")
 const UserModel = require("../models/userModel")
 
 const createUser = async (req, res) => {

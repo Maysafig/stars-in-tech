@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Stars In Tech",
+    "title": "REST API",
     "description": ""
   },
   "host": "localhost:3000",
@@ -13,7 +13,7 @@
   "paths": {
     "/": {
       "get": {
-        "description": "Index",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -22,7 +22,7 @@
         }
       }
     },
-    "/users": {
+    "/user": {
       "post": {
         "description": "",
         "parameters": [
@@ -33,9 +33,6 @@
               "type": "object",
               "properties": {
                 "nome": {
-                  "example": "any"
-                },
-                "areaInteresse": {
                   "example": "any"
                 },
                 "github": {
@@ -56,7 +53,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/users": {
       "get": {
         "description": "",
         "parameters": [],
@@ -70,7 +69,91 @@
         }
       }
     },
-    "/stars": {
+    "/user/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/update/{id}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "github": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/delete/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/stars/create": {
       "post": {
         "description": "",
         "parameters": [
@@ -113,13 +196,111 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/stars": {
       "get": {
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/star/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/star/update/{id}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "nomeUsuario": {
+                  "example": "any"
+                },
+                "instagram": {
+                  "example": "any"
+                },
+                "youtube": {
+                  "example": "any"
+                },
+                "linkedin": {
+                  "example": "any"
+                },
+                "github": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/star/delete/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
