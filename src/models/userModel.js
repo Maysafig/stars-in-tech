@@ -12,19 +12,17 @@ const userSchema = mongoose.Schema({
         unique: true,
     },
 
-    areaInteresse: {
-        type: String,
-        required: true
-    },
-
     github: {
         type: String,
+        unique: true,
         default: "Não informado"
     },
 
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+
     }
 }, { timestamps: true })
 

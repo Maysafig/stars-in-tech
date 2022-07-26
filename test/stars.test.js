@@ -2,7 +2,7 @@ const Star = require("../src/models/starsModel")
 
 describe("Teste da model Stars", () => {
     const stars = new Star({
-        id: 1,
+        _id: 1,
         nome: "Simara Conceição",
         nomeUsuario: "quero ser dev",
         instagram: "https://www.instagram.com/simara_conceicao",
@@ -11,6 +11,7 @@ describe("Teste da model Stars", () => {
         github: "https://github.com/simaraconceicao",
         email: "contato@simaraconceicao.com"
     })
+
     it("Deve chamar o Schema e retornar um novo nome", () => {
         expect(stars.nome).toBe("Simara Conceição")
     })

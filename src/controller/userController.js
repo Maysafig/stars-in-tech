@@ -1,11 +1,13 @@
+const { findByIdAndUpdate } = require("../models/userModel")
+const User = require("../models/userModel")
 const UserModel = require("../models/userModel")
 
 const createUser = async (req, res) => {
     try {
-        const { nome, areaInteresse, github, email } = req.body
+        const { nome, github, email } = req.body
 
         const newUser = new UserModel({
-            nome, areaInteresse, github, email
+            nome, github, email
         })
 
         const savedUser = await newUser.save()
@@ -27,7 +29,51 @@ const findAllUsers = async (req, res) => {
     }
 }
 
+const findUserById = async (req, res) => {
+    try {
+        const findUser = await UserModel.findById(req.params.id)
+        res.status(200).json(findUser)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
+const UpdateUser = async (req, res) => {
+    try {
+        const { nome, github, email } = req.body
+        await UserModel.findByIdAndUpdate(req.params.id, { nome, github, email })
+
+        const updatedUser = await UserModel.findById(req.params.id)
+        res.status(200).json(updatedUser)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
+const deleteUser = async (req, res) => {
+    try { 
+    const { id } = req.params
+    const findUser = await UserModel.findById(id)
+
+    if (findUser == null)
+    return res.status(404).json({ message: `A User com o id ${id} não foi deletada`})
+
+    await findUser.remove()
+
+    res.status(200).json({ message: `A User ${findUser.nome} foi deletada com sucesso.`}) 
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
 module.exports = {
     createUser,
-    findAllUsers
+    findAllUsers,
+    findUserById,
+    UpdateUser,
+    deleteUser
 }

@@ -14,32 +14,33 @@ const starsSchema = mongoose.Schema({
 
     nomeUsuario: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     instagram: { 
         type: String,
-        default: "Não Informado."
+        unique: true
     },
 
     youtube: {
         type: String,
-        default: "Não Informado."
+        unique: true
     },
 
     linkedin: {
         type: String,
-        default: "Não Informado."
+        unique: true
     },
 
     github: {
         type: String,
-        default: "Não Informado."
+        unique: true
     },
 
     email: {
         type: String,
-        default: "Não Informado."
+        unique: true
     }
 
 }, { timestamps: true })

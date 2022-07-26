@@ -56,12 +56,12 @@ const deleteStar = async (req, res) => {
         const findStar = await StarModel.findById(id)
 
         if (findStar == null) {
-            return res.status(404).json({ message: `A star com o id ${id} não foi encontrada.`})
+            return res.status(404).json({ message: `A Star com o id ${id} não foi encontrada.` })
         }
 
         await findStar.remove()
 
-        res.status(200).json({ message: `A star ${findStar.nome} foi deletada com sucesso.`})
+        res.status(200).json({ message: `A  Star ${findStar.nome} foi deletada com sucesso.` })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
@@ -72,6 +72,6 @@ module.exports = {
     createStar,
     findAllStars,
     findStarById,
-    updateStar, 
+    updateStar,
     deleteStar
 }
