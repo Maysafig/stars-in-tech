@@ -14,7 +14,7 @@ Em nosso banco de dados será possível cadastrar as plataformas utilizadas para
 
 ## 🦄 Autora
 
-<img src="assets\maysa.totvs.jpg" width=116 >
+<img src="assets\maysa.totvs.jpg" width=115 >
 <href="https://github.com/Maysafig/Maysafig"><br><img src="https://img.shields.io/badge/Maysa Figueiredo-purple" alt="Maysa Profile">
 
 ## 📧 Contatos 
