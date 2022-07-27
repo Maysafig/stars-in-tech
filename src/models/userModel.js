@@ -21,7 +21,8 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
 
     senha: { 
@@ -29,12 +30,17 @@ const userSchema = mongoose.Schema({
         required: true
     },
 
-    administradoraAPI: {
+    administradora: {
         type: Boolean,
         default: false
+    },
+
+    token: { 
+        type: String,
+        required: false
     }
 
-}, { timestamps: true })
+}, { timestamps: true }, { versionKey: false })
 
 const User = mongoose.model("user", userSchema)
 

@@ -6,7 +6,8 @@ describe("Teste da Model User", () => {
         github: "link do github da usuária",
         email: "email da usuária",
         senha: "senha da usuária",
-        administradoraAPI: false
+        administradora: false,
+        token: "token da usuaria"
     })
 
     it("Deve chamar o Schema e retornar o nome", () => {
@@ -26,7 +27,11 @@ describe("Teste da Model User", () => {
     })
 
     it("Deve chamar o Schema e retornar se a usuária é administradora da API", () => {
-        expect(user.administradoraAPI).toBe(false)
+        expect(user.administradora).toBe(false)
+    })
+  
+    it("Deve chamar o Schema e retornar se o token da usuária", () => {
+        expect(user.token).toBe("token da usuaria")
     })
 })
 
