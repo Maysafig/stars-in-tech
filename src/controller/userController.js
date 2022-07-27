@@ -2,10 +2,10 @@ const UserModel = require("../models/userModel")
 
 const createUser = async (req, res) => {
     try {
-        const { nome, github, email } = req.body
+        const { nome, github, email, senha } = req.body
 
         const newUser = new UserModel({
-            nome, github, email
+            nome, github, email, senha
         })
 
         const savedUser = await newUser.save()
@@ -39,8 +39,8 @@ const findUserById = async (req, res) => {
 
 const UpdateUser = async (req, res) => {
     try {
-        const { nome, github, email } = req.body
-        await UserModel.findByIdAndUpdate(req.params.id, { nome, github, email })
+        const { nome, github, email, senha, administradoraApi } = req.body
+        await UserModel.findByIdAndUpdate(req.params.id, { nome, github, email, senha, administradoraApi })
 
         const updatedUser = await UserModel.findById(req.params.id)
         res.status(200).json(updatedUser)

@@ -8,6 +8,7 @@ const connect = async() => {
             useUnifiedTopology: true
         })
         console.log("banco conectado!")
+        require("./configScript")
     }catch(error){
         console.error(error)
     }

@@ -14,7 +14,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect()
+mongoose.connect() 
 
 app.use("/minha-rota-de-documentacao", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(index)
