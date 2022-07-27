@@ -2,10 +2,10 @@ const StarModel = require("../models/starsModel")
 
 const createStar = async (req, res) => {
     try {
-        const { nome, nomeUsuario, instagram, youtube, linkedin, github, email } = req.body
+        const { nome, userName, instagram, youtube, linkedin, github, email } = req.body
 
         const newStar = new StarModel({
-            nome, nomeUsuario, instagram, youtube, linkedin, github, email
+            nome, userName, instagram, youtube, linkedin, github, email
         })
 
         const savedStar = await newStar.save()
@@ -38,8 +38,8 @@ const findStarById = async (req, res) => {
 
 const updateStar = async (req, res) => {
     try {
-        const { nome, nomeUsuario, instagram, youtube, linkedin, github, email } = req.body
-        await StarModel.findByIdAndUpdate(req.params.id, { nome, nomeUsuario, instagram, youtube, linkedin, github, email })
+        const { nome, userName, instagram, youtube, linkedin, github, email } = req.body
+        await StarModel.findByIdAndUpdate(req.params.id, { nome, userName, instagram, youtube, linkedin, github, email })
 
         const updatedStar = await StarModel.findById(req.params.id)
         res.status(200).json(updatedStar)

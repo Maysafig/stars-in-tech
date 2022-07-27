@@ -12,7 +12,7 @@ const starsSchema = mongoose.Schema({
         unique: true,
     },
 
-    nomeUsuario: {
+    userName: {
         type: String,
         required: true,
         unique: true
