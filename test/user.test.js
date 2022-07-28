@@ -1,37 +1,37 @@
 const usersModel = require("../src/models/userModel")
 
-describe("Teste da Model User", () => {
+describe("Model Users", () => {
     const user = new usersModel({
-        nome: "nome da usuária",
-        github: "link do github da usuária",
-        email: "email da usuária",
-        senha: "senha da usuária",
-        administradora: false,
-        token: "token da usuaria"
+        name: "name",
+        github: "github's link",
+        email: "email",
+        password: "password's user",
+        isAdm: false,
+        token: "token's user"
     })
 
-    it("Deve chamar o Schema e retornar o nome", () => {
-        expect(user.nome).toBe("nome da usuária")
+    it("Must call the schema and return the name", () => {
+        expect(user.name).toBe("name")
     })
 
-    it("Deve chamar o Schema e retornar o link do github", () => {
-        expect(user.github).toBe("link do github da usuária")
+    it("Must call the schema and return the user's github", () => {
+        expect(user.github).toBe("github's link")
     })
 
-    it("Deve chamar o Schema e retornar o email", () => {
-        expect(user.email).toBe("email da usuária")
+    it("Must call the schema and return the user's email", () => {
+        expect(user.email).toBe("email")
     })
 
-    it("Deve chamar o Schema e retornar a senha", () => {
-        expect(user.senha).toBe("senha da usuária")
+    it("Must call schema and return the user's hashed password", () => {
+        expect(user.password).toBe("password's user")
     })
 
-    it("Deve chamar o Schema e retornar se a usuária é administradora da API", () => {
-        expect(user.administradora).toBe(false)
+    it("Must call the schema and return if the user is adm", () => {
+        expect(user.isAdm).toBe(false)
     })
   
-    it("Deve chamar o Schema e retornar se o token da usuária", () => {
-        expect(user.token).toBe("token da usuaria")
+    it("Must call schema and return user token", () => {
+        expect(user.token).toBe("token's user")
     })
 })
 

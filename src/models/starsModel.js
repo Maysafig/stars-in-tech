@@ -6,7 +6,7 @@ const starsSchema = mongoose.Schema({
         default: mongoose.Types.ObjectId
     },
 
-    nome: {
+    name: {
         type: String,
         required: true,
         unique: true,

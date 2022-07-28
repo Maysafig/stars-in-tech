@@ -7,7 +7,7 @@ const connect = async() => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log("banco conectado!")
+        console.log("Database connect !")
         require("./configScript")
     }catch(error){
         console.error(error)

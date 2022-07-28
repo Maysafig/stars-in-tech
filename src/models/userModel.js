@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
         default: mongoose.Types.ObjectId
     },
 
-    nome: {
+    name: {
         type: String,
         required: true,
         unique: true,
@@ -25,12 +25,12 @@ const userSchema = mongoose.Schema({
         lowercase: true
     },
 
-    senha: { 
+    password: { 
         type: String,
         required: true
     },
 
-    administradora: {
+    isAdm: {
         type: Boolean,
         default: false
     },

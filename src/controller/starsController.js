@@ -2,10 +2,10 @@ const StarModel = require("../models/starsModel")
 
 const createStar = async (req, res) => {
     try {
-        const { nome, userName, instagram, youtube, linkedin, github, email } = req.body
+        const { name, userName, instagram, youtube, linkedin, github, email } = req.body
 
         const newStar = new StarModel({
-            nome, userName, instagram, youtube, linkedin, github, email
+            name, userName, instagram, youtube, linkedin, github, email
         })
 
         const savedStar = await newStar.save()
@@ -38,8 +38,8 @@ const findStarById = async (req, res) => {
 
 const updateStar = async (req, res) => {
     try {
-        const { nome, userName, instagram, youtube, linkedin, github, email } = req.body
-        await StarModel.findByIdAndUpdate(req.params.id, { nome, userName, instagram, youtube, linkedin, github, email })
+        const { name, userName, instagram, youtube, linkedin, github, email } = req.body
+        await StarModel.findByIdAndUpdate(req.params.id, { name, userName, instagram, youtube, linkedin, github, email })
 
         const updatedStar = await StarModel.findById(req.params.id)
         res.status(200).json(updatedStar)
@@ -56,12 +56,12 @@ const deleteStar = async (req, res) => {
         const findStar = await StarModel.findById(id)
 
         if (findStar == null) {
-            return res.status(404).json({ message: `A Star com o id ${id} não foi encontrada.` })
+            return res.status(404).json({ message: `Star with id ${id} not found.` })
         }
 
         await findStar.remove()
 
-        res.status(200).json({ message: `A Star ${findStar.nome} foi deletada com sucesso.` })
+        res.status(200).json({ message: `Star with id ${id} was sucessfully deleted.` })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
