@@ -6,12 +6,12 @@ const SECRET = process.env.SECRET
 const createUser = async (req, res) => {
     try {
         const { name, github, email, password } = req.body
-
         const passwordHash = bcrypt.hashSync(password, 10)
-        
-        const newUser = new UserModel({ name, github, email, senha: passwordHash })
-                
-        const savedUser = await newUser.save()
+        const newUser = new UserModel({ name, github, email, password: passwordHash })
+
+        await newUser.save()  
+              
+        const savedUser = await UserModel.findOne({ email: email}).select(["-token","-password", "-isAdm"])
 
         res.status(201).json(savedUser)
     } catch (error) {
@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
 
 const findAllUsers = async (req, res) => {
     try {
-        const allUsers = await UserModel.find()
+        const allUsers = await UserModel.find().select(["-token","-password", "-isAdm"])
         res.status(200).json(allUsers)
     } catch(error) {
         console.error(error)
@@ -32,7 +32,7 @@ const findAllUsers = async (req, res) => {
 
 const findUserById = async (req, res) => {
     try {
-        const findUser = await UserModel.findById(req.params.id)
+        const findUser = await UserModel.findById(req.params.id).select(["-token","-password", "-isAdm"])
         res.status(200).json(findUser)
     } catch (error) {
         console.error(error)
