@@ -29,7 +29,7 @@ const findAllUsers = async (req, res) => {
     try {
         await validateToken(req.get("authorization"))
         
-        const allUsers = await UserModel.find().select(["-token", "-password", "-isAdm"])
+        const allUsers = await UserModel.find().select(["-token", "-password"]) //, "-isAdm"
         res.status(200).json(allUsers)
     } catch (error) {
         console.error(error)
@@ -114,11 +114,11 @@ const deleteUserById = async (req, res) => {
         const findUser = await UserModel.findById(id)
 
         if (findUser == null)
-            return res.status(404).json({ message: `User with id ${id} not found.` })
+            return res.status(404).json({ message: `User with ID: ${id} not found.` })
 
         await findUser.remove()
 
-        res.status(200).json({ message: `User with id ${id} was sucessfully deleted.` })
+        res.status(200).json({ message: `User with ID: ${id} was sucessfully deleted.` })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })

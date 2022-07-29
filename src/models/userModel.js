@@ -15,13 +15,14 @@ const userSchema = mongoose.Schema({
     github: {
         type: String,
         unique: true,
-        default: "Não informado"
+        default: null
     },
 
     email: {
         type: String,
         required: true,
         unique: true,
+        immutable: true,
         lowercase: true
     },
 

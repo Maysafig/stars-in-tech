@@ -1,11 +1,12 @@
 const StarModel = require("../models/starsModel")
+const {validateToken, isAdm} = require("../controller/authController")
 
 const createStar = async (req, res) => {
     try {
-        const { name, userName, instagram, youtube, linkedin, github, email } = req.body
+        const { name, userName, instagram, youtube, linkedin, github } = req.body
 
         const newStar = new StarModel({
-            name, userName, instagram, youtube, linkedin, github, email
+            name, userName, instagram, youtube, linkedin, github
         })
 
         const savedStar = await newStar.save()
@@ -18,7 +19,9 @@ const createStar = async (req, res) => {
 
 const findAllStars = async (req, res) => {
     try {
+        await validateToken(req.get("authorization"))
         const allStars = await StarModel.find()
+
         res.status(200).json(allStars)
     } catch (error) {
         console.error(error)
@@ -28,7 +31,9 @@ const findAllStars = async (req, res) => {
 
 const findStarById = async (req, res) => {
     try {
+        await validateToken(req.get("authorization"))
         const findStar = await StarModel.findById(req.params.id)
+
         res.status(200).json(findStar)
     } catch (error) {
         console.error(error)
@@ -36,10 +41,17 @@ const findStarById = async (req, res) => {
     }
 }
 
-const updateStar = async (req, res) => {
+const updateStarById = async (req, res) => {
     try {
-        const { name, userName, instagram, youtube, linkedin, github, email } = req.body
-        await StarModel.findByIdAndUpdate(req.params.id, { name, userName, instagram, youtube, linkedin, github, email })
+        const { name, userName, instagram, youtube, linkedin, github } = req.body
+        const token = await validateToken(req.get("authorization"))
+        const administrator = await isAdm(token)
+
+        if (administrator == false) {
+            res.status(401).json({ message: "Your user don't have administrator privileges" })
+        }
+
+        await StarModel.findByIdAndUpdate(req.params.id, { name, userName, instagram, youtube, linkedin, github })
 
         const updatedStar = await StarModel.findById(req.params.id)
         res.status(200).json(updatedStar)
@@ -50,18 +62,46 @@ const updateStar = async (req, res) => {
     }
 }
 
-const deleteStar = async (req, res) => {
+const usernameModifyById = async (req, res) => {
+    try {
+        const { userName } = req.body
+        const token = await validateToken(req.get("authorization"))
+        const administrator = await isAdm(token)
+
+        if (administrator == false) {
+            res.status(401).json({ message: "Your user don't have administrator privileges" })
+        }
+
+        await StarModel.findByIdAndUpdate(req.params.id, { userName })
+
+        const updatedStar = await StarModel.findById(req.params.id)
+        res.status(200).json(updatedStar)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
+const deleteStarById = async (req, res) => {
     try {
         const { id } = req.params
+        const token = await validateToken(req.get("authorization"))
+        const administrator = await isAdm(token)
+
+        if (administrator == false) {
+            res.status(401).json({ message: "Your user don't have administrator privileges" })
+        }
+
         const findStar = await StarModel.findById(id)
 
         if (findStar == null) {
-            return res.status(404).json({ message: `Star with id ${id} not found.` })
+            return res.status(404).json({ message: `Star with ID: ${id} not found.` })
         }
 
         await findStar.remove()
 
-        res.status(200).json({ message: `Star with id ${id} was sucessfully deleted.` })
+        res.status(200).json({ message: `Star with ID: ${id} was sucessfully deleted.` })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
@@ -72,6 +112,7 @@ module.exports = {
     createStar,
     findAllStars,
     findStarById,
-    updateStar,
-    deleteStar
+    updateStarById,
+    usernameModifyById,
+    deleteStarById
 }
