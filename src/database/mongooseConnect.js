@@ -8,7 +8,7 @@ const connect = async() => {
             useUnifiedTopology: true
         })
         console.log("Database connect !")
-        require("./configScript")
+        require("./configDBScript")
     }catch(error){
         console.error(error)
     }

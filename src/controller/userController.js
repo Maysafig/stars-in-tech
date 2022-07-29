@@ -1,7 +1,13 @@
 const UserModel = require("../models/userModel")
+const {validateToken, isAdm} = require("../controller/authController")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const SECRET = process.env.SECRET
+
+const findUserByToken = async (token)  => {
+       const user = await UserModel.findOne({token: token})
+       return user
+}
 
 const createUser = async (req, res) => {
     try {
@@ -9,22 +15,23 @@ const createUser = async (req, res) => {
         const passwordHash = bcrypt.hashSync(password, 10)
         const newUser = new UserModel({ name, github, email, password: passwordHash })
 
-        await newUser.save()  
-              
-        const savedUser = await UserModel.findOne({ email: email}).select(["-token","-password", "-isAdm"])
+        await newUser.save()
+
+        const savedUser = await UserModel.findOne({ email: email }).select(["-token", "-password", "-isAdm"])
 
         res.status(201).json(savedUser)
     } catch (error) {
-        console.error(error)
         res.status(500).json({ message: error.message })
     }
 }
 
 const findAllUsers = async (req, res) => {
     try {
-        const allUsers = await UserModel.find().select(["-token","-password", "-isAdm"])
+        await validateToken(req.get("authorization"))
+        
+        const allUsers = await UserModel.find().select(["-token", "-password", "-isAdm"])
         res.status(200).json(allUsers)
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
     }
@@ -32,7 +39,9 @@ const findAllUsers = async (req, res) => {
 
 const findUserById = async (req, res) => {
     try {
-        const findUser = await UserModel.findById(req.params.id).select(["-token","-password", "-isAdm"])
+        await validateToken(req.get("authorization"))
+
+        const findUser = await UserModel.findById(req.params.id).select(["-token", "-password", "-isAdm"])
         res.status(200).json(findUser)
     } catch (error) {
         console.error(error)
@@ -40,35 +49,23 @@ const findUserById = async (req, res) => {
     }
 }
 
-const UpdateUser = async (req, res) => {
+const updateUserById = async (req, res) => {
     try {
-        const authHeader = req.get("authorization")
-        if (!authHeader) {
-            return res.status(401).send("You need an authorization")
-        }
-
         const { name, github, password } = req.body
         const passwordHash = bcrypt.hashSync(password, 10)
-
-        let token = authHeader.split(' ')[1]
-
-        await jwt.verify(token, SECRET, async function (erro) {
-            if (erro) {
-              return res.status(403).send("Access denied")
-            }
-          })
-
-          let userToken = await UserModel.findOne({ token : token })
-
-          if(userToken.isAdm == true || userToken.id == req.params.id) {
+        const token = await validateToken(req.get("authorization"))
+ 
+        let userToken = await findUserByToken(token)
+        let userAdm = await isAdm(token)
+        if ( userAdm == true || userToken.id == req.params.id) {
             await UserModel.findByIdAndUpdate(req.params.id, { name, github, password: passwordHash })
-          }
+        }
 
-          else{
-            return res.status(400).send("You don't have authorization")
-          }               
+        else {
+            return res.status(401).send("You don't have authorization")
+        }
 
-        const updatedUser = await UserModel.findById(req.params.id)
+        const updatedUser = await UserModel.findById(req.params.id).select(["-token", "-password", "-isAdm"])
         res.status(200).json(updatedUser)
 
     } catch (error) {
@@ -77,17 +74,51 @@ const UpdateUser = async (req, res) => {
     }
 }
 
-const deleteUser = async (req, res) => {
-    try { 
-    const { id } = req.params
-    const findUser = await UserModel.findById(id)
+const githubUserById = async (req, res) => {
+    try {
+        const { github } = req.body
+        const token = await validateToken(req.get("authorization"))
 
-    if (findUser == null)
-    return res.status(404).json({ message: `User with id ${id} not found.`})
+        let userToken = await findUserByToken(token)
+        let userAdm = await isAdm(token)
 
-    await findUser.remove()
+        if ( userAdm == true || userToken.id == req.params.id) {
+            await UserModel.findByIdAndUpdate(req.params.id, { github })
+        }
 
-    res.status(200).json({ message: `User with id ${id} was sucessfully deleted.`}) 
+        else {
+            return res.status(400).send("You don't have authorization")
+        }
+
+    } catch (error){
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
+const deleteUserById = async (req, res) => {
+    try {
+        const token = await validateToken(req.get("authorization"))
+
+        let userToken = await UserModel.findOne({ token: token })
+
+        if (userToken.isADM == true || userToken.id == req.params.id) {
+            await UserModel.findByIdAndDelete(req.params.id)
+        }
+
+        else {
+            return res.status(400).send("You don't have authorization")
+        }
+
+        const { id } = req.params
+        const findUser = await UserModel.findById(id)
+
+        if (findUser == null)
+            return res.status(404).json({ message: `User with id ${id} not found.` })
+
+        await findUser.remove()
+
+        res.status(200).json({ message: `User with id ${id} was sucessfully deleted.` })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
@@ -106,7 +137,7 @@ const login = (req, res) => {
 
         const validPassword = bcrypt.compareSync(req.body.password, newUser.password)
 
-        if(!validPassword) {
+        if (!validPassword) {
             return res.status(403).send("Incorrect password")
         }
 
@@ -114,14 +145,15 @@ const login = (req, res) => {
         newUser.token = token
         newUser.save()
         return res.status(200).send(token)
-   })
+    })
 }
 
 module.exports = {
     createUser,
     findAllUsers,
     findUserById,
-    UpdateUser,
-    deleteUser,
+    updateUserById,
+    githubUserById,
+    deleteUserById,
     login
 }
