@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
+    "title": "Stars in Tech",
     "description": ""
   },
   "host": "localhost:3000",
@@ -34,9 +34,43 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "github": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
-    "/user/{id}": {
+    "/users/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -57,43 +91,7 @@
         }
       }
     },
-    "/user": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "example": "any"
-                },
-                "github": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "senha": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/user/login": {
+    "/users/login": {
       "post": {
         "description": "",
         "parameters": [
@@ -106,7 +104,7 @@
                 "email": {
                   "example": "any"
                 },
-                "senha": {
+                "password": {
                   "example": "any"
                 }
               }
@@ -129,7 +127,7 @@
         }
       }
     },
-    "/user/update/{id}": {
+    "/users/update/{id}": {
       "put": {
         "description": "",
         "parameters": [
@@ -145,13 +143,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
+                "name": {
                   "example": "any"
                 },
                 "github": {
                   "example": "any"
                 },
-                "senha": {
+                "password": {
                   "example": "any"
                 }
               }
@@ -162,14 +160,8 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
@@ -177,7 +169,40 @@
         }
       }
     },
-    "/user/delete/{id}": {
+    "/users/modify/{id}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "github": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -191,6 +216,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -211,7 +239,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
+                "name": {
                   "example": "any"
                 },
                 "userName": {
@@ -227,9 +255,6 @@
                   "example": "any"
                 },
                 "github": {
-                  "example": "any"
-                },
-                "email": {
                   "example": "any"
                 }
               }
@@ -260,7 +285,7 @@
         }
       }
     },
-    "/star/{id}": {
+    "/stars/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -281,7 +306,7 @@
         }
       }
     },
-    "/star/update/{id}": {
+    "/stars/update/{id}": {
       "put": {
         "description": "",
         "parameters": [
@@ -297,7 +322,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
+                "name": {
                   "example": "any"
                 },
                 "userName": {
@@ -314,8 +339,41 @@
                 },
                 "github": {
                   "example": "any"
-                },
-                "email": {
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/stars/modify/{id}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
                   "example": "any"
                 }
               }
@@ -326,13 +384,16 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/star/delete/{id}": {
+    "/stars/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -346,6 +407,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
