@@ -89,6 +89,8 @@ const githubUserById = async (req, res) => {
         else {
             return res.status(400).send("You don't have authorization")
         }
+        const modifyUser = await UserModel.findById(req.params.id).select(["-token", "-password", "-isAdm"])
+        res.status(200).json(modifyUser)
 
     } catch (error){
         console.error(error)
