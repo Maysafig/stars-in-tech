@@ -106,8 +106,8 @@ Algumas dos endpoins necessitam de autenticação, login e permissão de usuári
 |---------|--------|------|--------|------|-------|
 | Lista todas as usuárias  | GET | `/users` | 200 | ✔️ | ✔️ |
 | Lista todas as usuárias por ID | GET | `/users/:id` | 200 | ✔️ | ✔️ |
-| Cria usuária | POST | `/users` | 201 | ✔️ | ✔️ |
-| Cria login de usuária | POST | `/users` | 201 | ✔️ | ✔️ |
+| Cria usuária | POST | `/users/create` | 201 | ✔️ | ✔️ |
+| Cria login de usuária | POST | `/users/login` | 201 | ✔️ | ✔️ |
 | Atualiza dados da usuária | PUT | `/users/update/:id` | 200 | ✔️ | ✔️ |
 | Atualiza o github da usuária pelo ID | PATCH | `/users/modify/:id` | 200 | ✔️ | ✔️ |
 | Deleta usuária por ID | DELETE | `/users/delete/:id` | 200 | ✔️ | ✔️ |
@@ -127,10 +127,10 @@ Algumas dos endpoins necessitam de autenticação, login e permissão de usuári
 
 ```
 As rotas referentes as Stars necessitam de permissão de administrador. 
-Por padrão, apenas a usuária referente a criadora da API possuí essa permissão, que é definida por um script que é executado
-no momento da inicialização do banco de dados.
 ```
-Esse script cria de forma automática a usuária administrativa no banco de dados e define o seu perfil como `isAdm : true` .
+
+Por padrão, apenas a usuária referente a criadora da API possuí essa permissão, que é definida por um script que é executado no momento da inicialização do banco de dados.
+Esse script cria a usuária administrativa no banco de dados e define o seu perfil como `isAdm : true` .
 
 ## Instalação 
 
