@@ -104,23 +104,21 @@ const deleteUserById = async (req, res) => {
 
         let userToken = await UserModel.findOne({ token: token })
 
+        const { id } = req.params
+        const findUser = await UserModel.findById(id)
+        
+        if (findUser == null)
+        return res.status(404).json({ message: `User with ID: ${id} not found.` })
+               
         if (userToken.isAdm == true || userToken.id == req.params.id) {
             await UserModel.findByIdAndDelete(req.params.id)
         }
-
+    
         else {
             return res.status(400).send("You don't have authorization")
         }
-
-        const { id } = req.params
-        const findUser = await UserModel.findById(id)
-
-        if (findUser == null)
-            return res.status(404).json({ message: `User with ID: ${id} not found.` })
-
-        await findUser.remove()
-
         res.status(200).json({ message: `User with ID: ${id} was sucessfully deleted.` })
+
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
