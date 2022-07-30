@@ -8,7 +8,7 @@ describe("Model Stars", () => {
         instagram: "https://www.instagram.com/conecta_elas",
         youtube: "https://www.youtube.com/c/conectaelas",
         linkedin: "https://www.linkedin.com/in/laizabenevides",
-        github: "https://github.com/laizabsobral"
+        portfolio: "https://github.com/laizabsobral"
     })
 
     it("Must call the schema and return the id", () => {
@@ -35,7 +35,7 @@ describe("Model Stars", () => {
         expect(stars.linkedin).toBe("https://www.linkedin.com/in/laizabenevides")
     })
 
-    it("Must call the schema and return the github's link", () => {
-        expect(stars.github).toBe("https://github.com/laizabsobral")
+    it("Must call the schema and return the portfolio's link", () => {
+        expect(stars.portfolio).toBe("https://github.com/laizabsobral")
     })
 })
