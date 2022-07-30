@@ -168,10 +168,10 @@ $ npm start
 
 <p align="center"> 
 <a>
- <img style="border-radius: 50%" src="assets\maysa.totvs.jpg" width="100px alt="Foto de Perfil Maysa"/>
+ <img style="border-radius: 60%" src="assets\desenvolvido.jpg" width="400px alt="Foto perfil Maysa"/>
  <br/>
 </a>
 </p>
 
-<p align="center">Desenvolvido por <a href="https://www.linkedin.com/in/maysa-figueiredo" target="_blank"><img src="https://img.shields.io/badge/-Maysa_Figueiredo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maysa-figueiredo" target="_blank"></a></p>
+<p align="center"><a href="https://www.linkedin.com/in/maysa-figueiredo" target="_blank"><img src="https://img.shields.io/badge/-Maysa_Figueiredo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maysa-figueiredo" target="_blank"></a></p>
 
