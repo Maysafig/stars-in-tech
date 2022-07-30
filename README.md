@@ -2,6 +2,7 @@
     <img src="assets\stars.png">
     <a href="https://stars-in-tech.herokuapp.com/"><img src="https://img.shields.io/badge/deploy-heroku.com-purple" alt="Deploy on heroku" /a>
     <a href="https://stars-in-tech.herokuapp.com/minha-rota-de-documentacao"><img src="https://img.shields.io/badge/documentation-swagger-purple" alt="Documentation on Swagger" /a>
+    <a href="https://www.canva.com/design/DAFH5DHIGhk/GzpKYkz-gTpBoJkaZ_qe_Q/view?utm_content=DAFH5DHIGhk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"><img src="https://img.shields.io/badge/apresentação-canvas-purple" alt="Apresentação do projeto" /a>
     <a img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/maysafig/stars-in-tech?color=purple">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/maysafig/stars-in-tech?color=purple">
 </p>
