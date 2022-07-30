@@ -3,7 +3,13 @@ const {validateToken, admAccess} = require("../controller/authController")
 
 const createStar = async (req, res) => {
     try {
+        const token = await validateToken(req.get("authorization"))
+        const userAdm = await admAccess(token)
         const { name, userName, instagram, youtube, linkedin, github } = req.body
+
+        if (userAdm == false) {
+            res.status(401).json({ message: "Your user don't have administrator privileges" })
+        }
 
         const newStar = new StarModel({
             name, userName, instagram, youtube, linkedin, github

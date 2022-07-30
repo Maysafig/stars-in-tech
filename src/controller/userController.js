@@ -56,7 +56,7 @@ const updateUserById = async (req, res) => {
         const token = await validateToken(req.get("authorization"))
  
         let userToken = await findUserByToken(token)
-        let userAdm = await isAdm(token)
+        let userAdm = await admAccess(token)
         if ( userAdm == true || userToken.id == req.params.id) {
             await UserModel.findByIdAndUpdate(req.params.id, { name, github, password: passwordHash })
         }
@@ -80,7 +80,7 @@ const githubUserById = async (req, res) => {
         const token = await validateToken(req.get("authorization"))
 
         let userToken = await findUserByToken(token)
-        let userAdm = await isAdm(token)
+        let userAdm = await admAccess(token)
 
         if ( userAdm == true || userToken.id == req.params.id) {
             await UserModel.findByIdAndUpdate(req.params.id, { github })
