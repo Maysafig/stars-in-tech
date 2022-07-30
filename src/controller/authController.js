@@ -17,7 +17,7 @@ const validateToken = async (token)  => {
     return tokenSplit
 }
 
-const isAdm = async (token) => {
+const admAccess = async (token) => {
     if (!token) {
         throw { message: "You need an authorization"}
     }
@@ -30,7 +30,7 @@ const isAdm = async (token) => {
 
 module.exports = {
     validateToken,
-    isAdm
+    admAccess
 }
 
 

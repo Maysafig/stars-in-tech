@@ -1,5 +1,5 @@
 const StarModel = require("../models/starsModel")
-const {validateToken, isAdm} = require("../controller/authController")
+const {validateToken, admAccess} = require("../controller/authController")
 
 const createStar = async (req, res) => {
     try {
@@ -45,7 +45,7 @@ const updateStarById = async (req, res) => {
     try {
         const { name, userName, instagram, youtube, linkedin, github } = req.body
         const token = await validateToken(req.get("authorization"))
-        const administrator = await isAdm(token)
+        const administrator = await admAccess(token)
 
         if (administrator == false) {
             res.status(401).json({ message: "Your user don't have administrator privileges" })
@@ -66,7 +66,7 @@ const usernameModifyById = async (req, res) => {
     try {
         const { userName } = req.body
         const token = await validateToken(req.get("authorization"))
-        const administrator = await isAdm(token)
+        const administrator = await admAccess(token)
 
         if (administrator == false) {
             res.status(401).json({ message: "Your user don't have administrator privileges" })
@@ -87,7 +87,7 @@ const deleteStarById = async (req, res) => {
     try {
         const { id } = req.params
         const token = await validateToken(req.get("authorization"))
-        const administrator = await isAdm(token)
+        const administrator = await admAccess(token)
 
         if (administrator == false) {
             res.status(401).json({ message: "Your user don't have administrator privileges" })

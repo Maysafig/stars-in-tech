@@ -1,5 +1,5 @@
 const UserModel = require("../models/userModel")
-const {validateToken, isAdm} = require("../controller/authController")
+const {validateToken, admAccess} = require("../controller/authController")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const SECRET = process.env.SECRET
@@ -29,7 +29,7 @@ const findAllUsers = async (req, res) => {
     try {
         await validateToken(req.get("authorization"))
         
-        const allUsers = await UserModel.find().select(["-token", "-password"]) //, "-isAdm"
+        const allUsers = await UserModel.find().select(["-token", "-password", "-isAdm"])
         res.status(200).json(allUsers)
     } catch (error) {
         console.error(error)
@@ -102,7 +102,7 @@ const deleteUserById = async (req, res) => {
 
         let userToken = await UserModel.findOne({ token: token })
 
-        if (userToken.isADM == true || userToken.id == req.params.id) {
+        if (userToken.isAdm == true || userToken.id == req.params.id) {
             await UserModel.findByIdAndDelete(req.params.id)
         }
 
