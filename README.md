@@ -142,15 +142,15 @@ $ git clone https://github.com/Maysafig/stars-in-tech
 $ cd stars-in-tech
 
 # Instalar as dependências
-- `npm init -y`
-- `npm install `
-- `npm install express `
-- `npm install cors`
-- `npm install nodemon `
-- `npm install mongoose `
-- `npm install dotenv-safe `
-- `npm install jsonwebtoken `
-- `npm install bcrypt `
+- npm init -y
+- npm install 
+- npm install express 
+- npm install cors
+- npm install nodemon
+- npm install mongoose
+- npm install dotenv-safe
+- npm install jsonwebtoken
+- npm install bcrypt
 
 # Executar o servidor
 $ npm start
