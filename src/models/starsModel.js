@@ -33,7 +33,7 @@ const starsSchema = mongoose.Schema({
         unique: true
     },
 
-    github: {
+    portfolio: {
         type: String,
         unique: true
     }
