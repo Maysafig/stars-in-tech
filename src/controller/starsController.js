@@ -8,7 +8,7 @@ const createStar = async (req, res) => {
         const { name, userName, instagram, youtube, linkedin, portfolio } = req.body
 
         if (userAdm == false) {
-            res.status(401).json({ message: "Your user don't have administrator privileges" })
+            return res.status(401).json({ message: "Your user don't have administrator privileges" })
         }
 
         const newStar = new StarModel({
@@ -54,7 +54,7 @@ const updateStarById = async (req, res) => {
         const administrator = await admAccess(token)
 
         if (administrator == false) {
-            res.status(401).json({ message: "Your user don't have administrator privileges" })
+            return res.status(401).json({ message: "Your user don't have administrator privileges" })
         }
 
         await StarModel.findByIdAndUpdate(req.params.id, { name, userName, instagram, youtube, linkedin, portfolio })
@@ -75,7 +75,7 @@ const usernameModifyById = async (req, res) => {
         const administrator = await admAccess(token)
 
         if (administrator == false) {
-            res.status(401).json({ message: "Your user don't have administrator privileges" })
+            return res.status(401).json({ message: "Your user don't have administrator privileges" })
         }
 
         await StarModel.findByIdAndUpdate(req.params.id, { userName })
@@ -96,7 +96,7 @@ const deleteStarById = async (req, res) => {
         const administrator = await admAccess(token)
 
         if (administrator == false) {
-            res.status(401).json({ message: "Your user don't have administrator privileges" })
+            return res.status(401).json({ message: "Your user don't have administrator privileges" })
         }
 
         const findStar = await StarModel.findById(id)
