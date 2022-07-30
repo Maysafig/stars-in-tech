@@ -8,7 +8,7 @@ router.get("/users", controller.findAllUsers)
 router.get("/users/:id", controller.findUserById)
 
 //CREATE
-router.post("/users", controller.createUser)
+router.post("/users/create", controller.createUser)
 router.post("/users/login", controller.login)
 
 //UPDATE 
