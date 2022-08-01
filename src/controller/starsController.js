@@ -2,7 +2,11 @@ const StarModel = require("../models/starsModel")
 const {validateToken, admAccess} = require("../controller/authController")
 
 const createStar = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['stars']
+     * #swagger.summary = 'Create a Star' 
+     */
+     try {
         const token = await validateToken(req.get("authorization"))
         const userAdm = await admAccess(token)
         const { name, userName, instagram, youtube, linkedin, portfolio } = req.body
@@ -24,7 +28,11 @@ const createStar = async (req, res) => {
 }
 
 const findAllStars = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['stars']
+     * #swagger.summary = 'See all Stars' 
+     */
+        try {
         await validateToken(req.get("authorization"))
         const allStars = await StarModel.find()
 
@@ -36,6 +44,10 @@ const findAllStars = async (req, res) => {
 }
 
 const findStarById = async (req, res) => {
+    /**
+     * #swagger.tags = ['stars']
+     * #swagger.summary = 'See Star by ID' 
+     */    
     try {
         await validateToken(req.get("authorization"))
         const findStar = await StarModel.findById(req.params.id)
@@ -48,7 +60,11 @@ const findStarById = async (req, res) => {
 }
 
 const updateStarById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['stars']
+     * #swagger.summary = 'Update Star by ID' 
+     */    
+     try {
         const { name, userName, instagram, youtube, linkedin, portfolio } = req.body
         const token = await validateToken(req.get("authorization"))
         const administrator = await admAccess(token)
@@ -69,7 +85,11 @@ const updateStarById = async (req, res) => {
 }
 
 const usernameModifyById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['stars']
+     * #swagger.summary = 'Modify username by ID' 
+     */    
+     try {
         const { userName } = req.body
         const token = await validateToken(req.get("authorization"))
         const administrator = await admAccess(token)
@@ -90,7 +110,11 @@ const usernameModifyById = async (req, res) => {
 }
 
 const deleteStarById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['stars']
+     * #swagger.summary = 'Delete Star by ID' 
+     */    
+     try {
         const { id } = req.params
         const token = await validateToken(req.get("authorization"))
         const administrator = await admAccess(token)

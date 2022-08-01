@@ -4,12 +4,17 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const SECRET = process.env.SECRET
 
+
 const findUserByToken = async (token)  => {
        const user = await UserModel.findOne({token: token})
        return user
 }
 
 const createUser = async (req, res) => {
+    /**
+     * #swagger.tags = ['users'] 
+     * #swagger.summary = 'Create a user'
+     */    
     try {
         const { name, github, email, password } = req.body
         const passwordHash = bcrypt.hashSync(password, 10)
@@ -25,7 +30,12 @@ const createUser = async (req, res) => {
     }
 }
 
+
 const findAllUsers = async (req, res) => {
+    /**
+     * #swagger.tags = ['users']
+     * #swagger.summary = 'See all Users' 
+     */
     try {
         await validateToken(req.get("authorization"))
         
@@ -38,7 +48,11 @@ const findAllUsers = async (req, res) => {
 }
 
 const findUserById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['users']
+     * #swagger.summary = 'See a User by ID' 
+     */
+     try {
         await validateToken(req.get("authorization"))
 
         const findUser = await UserModel.findById(req.params.id).select(["-token", "-password", "-isAdm"])
@@ -50,7 +64,11 @@ const findUserById = async (req, res) => {
 }
 
 const updateUserById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['users']
+     * #swagger.summary = 'Update User by ID' 
+     */
+     try {
         const { name, github, password } = req.body
         const passwordHash = bcrypt.hashSync(password, 10)
         const token = await validateToken(req.get("authorization"))
@@ -75,7 +93,11 @@ const updateUserById = async (req, res) => {
 }
 
 const githubUserById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['users']
+     * #swagger.summary = 'Update github by ID' 
+     */
+        try {
         const { github } = req.body
         const token = await validateToken(req.get("authorization"))
 
@@ -99,7 +121,11 @@ const githubUserById = async (req, res) => {
 }
 
 const deleteUserById = async (req, res) => {
-    try {
+    /**
+     * #swagger.tags = ['users']
+     * #swagger.summary = 'Delete User by ID' 
+     */
+        try {
         const token = await validateToken(req.get("authorization"))
 
         let userToken = await UserModel.findOne({ token: token })
@@ -126,7 +152,10 @@ const deleteUserById = async (req, res) => {
 }
 
 const login = (req, res) => {
-    UserModel.findOne({ email: req.body.email }, function (error, newUser) {
+    /**
+     * #swagger.tags = ['users']
+     * #swagger.summary = 'Create login' 
+     */    UserModel.findOne({ email: req.body.email }, function (error, newUser) {
         if (error) {
             return res.status(500).send({ message: "Header not found" })
         }

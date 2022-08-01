@@ -2,18 +2,29 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Stars in Tech",
+    "title": "REST API",
     "description": ""
   },
   "host": "localhost:3000",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "default"
+    },
+    {
+      "name": "users"
+    },
+    {
+      "name": "stars"
+    }
+  ],
   "schemes": [
     "http"
   ],
   "paths": {
     "/": {
       "get": {
-        "description": "Index",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -24,6 +35,10 @@
     },
     "/users": {
       "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "See all Users",
         "description": "",
         "parameters": [],
         "responses": {
@@ -38,6 +53,10 @@
     },
     "/users/{id}": {
       "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "See a User by ID",
         "description": "",
         "parameters": [
           {
@@ -59,6 +78,10 @@
     },
     "/users/create": {
       "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create a user",
         "description": "",
         "parameters": [
           {
@@ -95,6 +118,10 @@
     },
     "/users/login": {
       "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create login",
         "description": "",
         "parameters": [
           {
@@ -131,6 +158,10 @@
     },
     "/users/update/{id}": {
       "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update User by ID",
         "description": "",
         "parameters": [
           {
@@ -173,6 +204,10 @@
     },
     "/users/modify/{id}": {
       "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update github by ID",
         "description": "",
         "parameters": [
           {
@@ -195,6 +230,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "400": {
             "description": "Bad Request"
           },
@@ -206,6 +244,10 @@
     },
     "/users/delete/{id}": {
       "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete User by ID",
         "description": "",
         "parameters": [
           {
@@ -231,8 +273,55 @@
         }
       }
     },
+    "/stars": {
+      "get": {
+        "tags": [
+          "stars"
+        ],
+        "summary": "See all Stars",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/stars/{id}": {
+      "get": {
+        "tags": [
+          "stars"
+        ],
+        "summary": "See Star by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/stars/create": {
       "post": {
+        "tags": [
+          "stars"
+        ],
+        "summary": "Create a Star",
         "description": "",
         "parameters": [
           {
@@ -256,7 +345,7 @@
                 "linkedin": {
                   "example": "any"
                 },
-                "github": {
+                "portfolio": {
                   "example": "any"
                 }
               }
@@ -276,43 +365,12 @@
         }
       }
     },
-    "/stars": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/stars/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/stars/update/{id}": {
       "put": {
+        "tags": [
+          "stars"
+        ],
+        "summary": "Update Star by ID",
         "description": "",
         "parameters": [
           {
@@ -342,7 +400,7 @@
                 "linkedin": {
                   "example": "any"
                 },
-                "github": {
+                "portfolio": {
                   "example": "any"
                 }
               }
@@ -364,6 +422,10 @@
     },
     "/stars/modify/{id}": {
       "patch": {
+        "tags": [
+          "stars"
+        ],
+        "summary": "Modify username by ID",
         "description": "",
         "parameters": [
           {
@@ -400,6 +462,10 @@
     },
     "/stars/delete/{id}": {
       "delete": {
+        "tags": [
+          "stars"
+        ],
+        "summary": "Delete Star by ID",
         "description": "",
         "parameters": [
           {

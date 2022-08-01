@@ -3,12 +3,12 @@ const express = require("express")
 
 const router = express.Router()
 
-//CREATE
-router.post("/stars/create", controller.createStar)
-
 //READ
 router.get("/stars", controller.findAllStars)
 router.get("/stars/:id", controller.findStarById)
+
+//CREATE
+router.post("/stars/create", controller.createStar)
 
 //UPDATE 
 router.put("/stars/update/:id", controller.updateStarById)
