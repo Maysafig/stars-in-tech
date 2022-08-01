@@ -16,7 +16,7 @@ app.use(cors())
 
 mongoose.connect() 
 
-app.use("/minha-rota-de-documentacao", swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(index)
 app.use(userRoutes)
 app.use(starsRoutes)
